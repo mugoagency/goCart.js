@@ -355,7 +355,7 @@ class GoCart {
         removeFromCart.forEach((item) => {
             item.addEventListener('click', () => {
                 GoCart.removeItemAnimation(item.parentNode);
-                const line = item.parentNode.getAttribute('data-line');
+                const line = item.parentNode.parentNode.getAttribute('data-line');
                 this.removeItem(line);
             });
         });
