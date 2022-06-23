@@ -335,16 +335,16 @@ class GoCart {
                 <div class="go-cart-item__info">
                     <a href="${item.url}" class="go-cart-item__title">${item.product_title}</a>
                     <div class="go-cart-item__variant">${itemVariant}</div>
+                    <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
+                    <a class="go-cart-item__remove ${this.removeFromCartNoDot}">${this.labelRemove}</a>
                     <div class="go-cart-item__quantity">
                         <span class="go-cart-item__quantity-label">${this.labelQuantity} </span>
                         <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
                         <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="${item.quantity}" disabled>
                         <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
-                    </div>
+                    </div>  
                 </div>
             </div>
-            <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
-            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">${this.labelRemove}</a>
         </div>
       `;
             this.cartDrawerContent.innerHTML += cartSingleProduct;

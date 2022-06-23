@@ -331,16 +331,7 @@ $go-cart-z-index-base: 0 !default;
         user-select: none;
     }
 
-    &__price {
-        position: absolute;
-        bottom: 25px;
-        right: 0;
-    }
-
     &__remove {
-        position: absolute;
-        right: 0;
-        top: 25px;
         cursor: pointer;
     }
 
