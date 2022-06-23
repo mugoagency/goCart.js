@@ -354,7 +354,6 @@ class GoCart {
         const removeFromCart = document.querySelectorAll(this.removeFromCart);
         removeFromCart.forEach((item) => {
             item.addEventListener('click', () => {
-                alert('test');
                 GoCart.removeItemAnimation(item.parentNode);
                 const line = item.parentNode.parentNode.parentNode.getAttribute('data-line');
                 this.removeItem(line);
