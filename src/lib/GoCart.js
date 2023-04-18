@@ -87,7 +87,7 @@ class GoCart {
     init() {
 
         this.fetchCart();
-        
+
         if (this.isDrawerMode) {
             this.setDrawerDirection();
         }
@@ -167,7 +167,7 @@ class GoCart {
 
         const eventStart = new CustomEvent("AjaxCart:fetchCartStart", { bubbles: true });
         const eventEnd = new CustomEvent("AjaxCart:fetchCartEnd", { bubbles: true });
-        
+
         this.cartDrawer.dispatchEvent(eventStart);
 
         window.fetch('/cart.js', {
@@ -284,7 +284,7 @@ class GoCart {
                 callback(cart);
             }
         }
-        const event = new CustomEvent("AjaxCart:fetchHandler", { 
+        const event = new CustomEvent("AjaxCart:fetchHandler", {
             bubbles: true,
             detail: {
                 cart: cart
@@ -333,16 +333,27 @@ class GoCart {
             <div class="go-cart-item__info-wrapper">
                 <div class="go-cart-item__image" style="background-image: url(${item.image});"></div>
                 <div class="go-cart-item__info">
+                    <small class="go-cart-item__type">${item.product_type}</small>
                     <a href="${item.url}" class="go-cart-item__title">${item.product_title}</a>
                     <div class="go-cart-item__variant">${itemVariant}</div>
-                    <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
                     <a class="go-cart-item__remove ${this.removeFromCartNoDot}">${this.labelRemove}</a>
+                </div>
+                <div class="go-cart-item__tools">
+                    <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
                     <div class="go-cart-item__quantity">
                         <span class="go-cart-item__quantity-label">${this.labelQuantity} </span>
-                        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
+                        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">
+                            <svg width="7" height="2" viewBox="0 0 7 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.44 0.76H6.84V1.8H0.44V0.76Z" fill="black"/>
+                            </svg>
+                        </span>
                         <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="${item.quantity}" disabled>
-                        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
-                    </div>  
+                        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">
+                            <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.48 5.168H5.216V8.608H4.056V5.168H0.808V4.088H4.056V0.672H5.216V4.088H8.48V5.168Z" fill="black"/>
+                            </svg>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
