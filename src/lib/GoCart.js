@@ -106,7 +106,9 @@ class GoCart {
         }, false);
 
         this.cartTrigger.forEach((item) => {
-            item.addEventListener('click', () => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
                 if (this.isDrawerMode) {
                     this.openCartDrawer();
                 } else {
