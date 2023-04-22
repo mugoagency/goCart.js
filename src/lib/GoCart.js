@@ -1,11 +1,17 @@
+/* eslint-disable */
+
 import './scss/go-cart.scss';
 import {formatMoney} from '@shopify/theme-currency/currency';
 import 'whatwg-fetch';
 import serialize from 'form-serialize';
 
+const { mlog, toggleBodyOverflow } = mugo.utils;
+
 class GoCart {
 
     constructor(options) {
+
+        mlog("GoCart: Loaded")
 
         const defaults = {
             cartModalFail: '.js-go-cart-modal-fail',
@@ -115,6 +121,7 @@ class GoCart {
                     this.openMiniCart();
                 }
                 this.openCartOverlay();
+                toggleBodyOverflow("add");
             });
         });
 
@@ -128,12 +135,14 @@ class GoCart {
                 this.closeMiniCart();
             }
             this.closeCartOverlay();
+            toggleBodyOverflow("remove");
         });
 
         if (this.isDrawerMode) {
             this.cartDrawerClose.addEventListener('click', () => {
                 this.closeCartDrawer();
                 this.closeCartOverlay();
+                toggleBodyOverflow("remove");
             });
         }
 
