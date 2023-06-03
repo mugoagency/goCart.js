@@ -254,7 +254,6 @@ class GoCart {
                     if (!lineElement) return;
 
                     const lineElementTools = lineElement.querySelector(".go-cart-item__tools");
-                    console.log(lineElementTools)
                     lineElementTools.insertAdjacentHTML("afterend", `
                         <div class="go-cart-item__error">
                             All available items are in your cart
