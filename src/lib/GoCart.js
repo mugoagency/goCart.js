@@ -233,6 +233,9 @@ class GoCart {
     }
 
     changeItemQuantity(line, quantity) {
+        const lineElement = document.querySelector(`.go-cart-item__single[data-line="${line}"]`)
+                  let outOfStock = false;
+
         window.fetch('/cart/change.js', {
             method: 'POST',
             credentials: 'same-origin',
@@ -241,8 +244,26 @@ class GoCart {
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => response.json())
-            .then(() => this.fetchCart())
+            .then((response) => {
+                if (response.status === 422) outOfStock = true;
+
+                return response.json()
+            })
+            .then(() => {
+                if (outOfStock) {
+                    if (!lineElement) return;
+
+                    const lineElementTools = lineElement.querySelector(".go-cart-item__tools");
+                    console.log(lineElementTools)
+                    lineElementTools.insertAdjacentHTML("afterend", `
+                        <div class="go-cart-item__error">
+                            All available items are in your cart
+                        </div>
+                    `)
+                } else {
+                    this.fetchCart();
+                }
+            })
             .catch((error) => {
                 this.ajaxRequestFail();
                 throw new Error(error);
